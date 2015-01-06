@@ -10,9 +10,9 @@
     </author>
     <updated>2015-01-06T00:00:00Z</updated>
     <entry>
-    <title>Moving from Octopress to Hakyll</title>
-    <link href="http://engineering.brand-karma.com/posts/2015-01-06-postgis.html" />
-    <id>http://engineering.brand-karma.com/posts/2015-01-06-postgis.html</id>
+    <title>Using PostGIS to store geo location information on AWS RDS</title>
+    <link href="http://engineering.brand-karma.com/posts/2015-01-06-using-postgis-to-store-geo-location-information-on-aws-rds.html" />
+    <id>http://engineering.brand-karma.com/posts/2015-01-06-using-postgis-to-store-geo-location-information-on-aws-rds.html</id>
     <published>2015-01-06T00:00:00Z</published>
     <updated>2015-01-06T00:00:00Z</updated>
     <summary type="html"><![CDATA[Brand Karma Engineering]]></summary>
