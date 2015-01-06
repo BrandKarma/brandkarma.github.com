@@ -1,0 +1,8 @@
+---
+layout: post
+title: Moving from Octopress to Hakyll
+date: 2014-07-28 15:08
+comments: true
+categories: 
+---
+
