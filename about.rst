@@ -2,4 +2,4 @@
 title: About
 ---
 
-Brand Karma Engineering
+I am MnO2.
