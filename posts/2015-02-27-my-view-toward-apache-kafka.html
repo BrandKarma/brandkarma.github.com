@@ -4,40 +4,36 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home</title>
+        <title>My view toward Apache Kafka</title>
 
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content>
 
-        <link rel="shortcut icon" href="./images/favicon.ico">
-        <link rel="stylesheet" type="text/css" href="./css/main.css">
-        <link rel="stylesheet" type="text/css" href="./css/screen.css">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+        <link rel="shortcut icon" href="../images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <link rel="stylesheet" type="text/css" href="../css/screen.css">
+        <link rel="stylesheet" type="text/css" href="../css/fonts.css">
 
-        <link rel="alternate" type="application/rss+xml" href="./rss/feed.xml">
+        <link rel="alternate" type="application/rss+xml" href="../rss/feed.xml">
         <link rel="canonical" href>
+        
     </head>
-    <body class="home-template">
-        <header class="site-head" style="background-image: url(/images/enigma.jpg)">
-            <div class="vertical">
-                <div class="site-head-content inner">
-                    <h1 class="blog-title">Brand Karma Engineering</h1>
-                    <h2 class="blog-description"></h2>
-                </div>
-            </div>
-        </header>
-
+    <body class="post-template">
         <main class="content" role="main">
-            
-                <article class="post">
-                    <header class="post-header">
-    <span class="post-meta"><time datetime="2015-02-21 17:30">2015-02-21 17:30</time> </span>
-    <h2 class="post-title"><a href="../posts/2015-02-27-my-view-toward-apache-kafka.html">My view toward Apache Kafka</a></h2>
-</header>
-<section class="post-excerpt">
-    <p><a href="http://kafka.apache.org/">Apache Kafka</a> is a distributed, fault tolerent high throughput transaction log system. Most of the marketing materials coin it as a message broker or publish-subscribe system. I couldn’t say those claims are wrong because in most of the architectures it does serve as a centralized logging system, and pass the message between different parts of the architectural diagram. However, I like to say it as a transaction log system because its API is relatively low-level in semantic comparing to RabbitMQ and others systems that would first come up in your mind when mentioned for the (task) message queue. The offset of the consumers are managed by the consuemr themselves (though starting from 0.8, the offsets of simple consumers are stored in Zookeeper for simple use cases.) This distiction might be because just like <a href="https://medium.com/@jeeyoungk/why-i-love-databases-1d4cc433685f">any data store abstraction are leaky</a>, the message queue system when put in different scenario, are also leaky. And Apache Kafka lies on the end of low-level API with high throuhput end of the spectrum.</p>
+            <article class="post">
+                <header class="post-header">
+                    <a class="blog-logo" href="../">
+                            <span class="blog-title">Brand Karma Engineering</span>
+                    </a>
+                </header>
+                    <span class="post-meta"><time datetime="2015-02-21 17:30">2015-02-21 17:30</time> </span>
+
+                    <h1 class="post-title">My view toward Apache Kafka</h1>
+
+                    <section class="post-content">
+                        <p><a href="http://kafka.apache.org/">Apache Kafka</a> is a distributed, fault tolerent high throughput transaction log system. Most of the marketing materials coin it as a message broker or publish-subscribe system. I couldn’t say those claims are wrong because in most of the architectures it does serve as a centralized logging system, and pass the message between different parts of the architectural diagram. However, I like to say it as a transaction log system because its API is relatively low-level in semantic comparing to RabbitMQ and others systems that would first come up in your mind when mentioned for the (task) message queue. The offset of the consumers are managed by the consuemr themselves (though starting from 0.8, the offsets of simple consumers are stored in Zookeeper for simple use cases.) This distiction might be because just like <a href="https://medium.com/@jeeyoungk/why-i-love-databases-1d4cc433685f">any data store abstraction are leaky</a>, the message queue system when put in different scenario, are also leaky. And Apache Kafka lies on the end of low-level API with high throuhput end of the spectrum.</p>
 <p>Apache Kafka is carefully well-designed and there have been several articles from its creator and Confluent, the company backing the Apache Kafka.</p>
 <ul>
 <li><a href="http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying">The Log: What every software engineer should know about real-time data’s unifying abstraction</a></li>
@@ -65,58 +61,40 @@
 <h4 id="print-message-greater-than-an-offset">print message greater than an offset</h4>
 <pre><code>bin/kafka-run-class.sh kafka.tools.SimpleConsumerShell --server=kafka://127.0.0.1:8001 --topic=hello-world --offset=34305339 --fetchsize=5000 --print-message</code></pre>
 
-</section>
+                    </section>
 
-                </article>
-            
-                <article class="post">
-                    <header class="post-header">
-    <span class="post-meta"><time datetime="2015-01-06 15:08">2015-01-06 15:08</time> </span>
-    <h2 class="post-title"><a href="../posts/2015-01-06-postgis-with-sqlalchemy.html">PostGIS with SQLAlchemy</a></h2>
-</header>
-<section class="post-excerpt">
-    <p>Postgres is often said as the open-source world Oracle DB. It is shipped with different kind of index type. The default is B-tree, the others are R-Tree and GIST and GIN respectively. <a href="http://postgis.net/docs/manual-2.1/">PostGIS</a> is built for indexing geometry objects, and it is built on Postgres’s GIST type index. On AWS RDS you could also switch it on by following the <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.html#Appendix.PostgreSQL.CommonDBATasks.PostGIS">instructions</a></p>
-<p>To take the most of it and build fast prototypes, we still need ORM abstraction for PostGIS extension. The popular Sqlalchemy ORM in python world comes with geoalchemy extension. It provides functions from PostGIS.</p>
-<p>To use it, you have to import it into your model file</p>
-<pre><code>from geoalchemy2 import Geometry</code></pre>
-<p>And define the column with <code>Geometry</code> class</p>
-<pre><code>geom = Column(Geometry(‘POINT’), nullable=False)</code></pre>
-<p>And insert to the model by assigning it a <code>WKTElement</code> with correct srid</p>
-<pre><code>s = ‘POINT(%s %s)’ %(geocode[“latitude”], geocode[“longitude”])
-l.geom = WKTElement(s, srid=4326)</code></pre>
-<p>Then you could do the common operation using <a href="http://geoalchemy-2.readthedocs.org/en/latest/spatial_functions.html">spatial functions</a></p>
-<pre><code>from geoalchemy2 import functions</code></pre>
+                    <footer class="post-footer">
 
-</section>
+                        <section class="author">
+                            <h4>Paul Meng</h4>
+                            <p></p>
+                        </section>
 
-                </article>
-            
+                        <section class="share">
+                            <h4>Share this post</h4>
+                            <a class="icon-twitter" href="https://twitter.com/share?text=My view toward Apache Kafka&amp;url=/posts/2015-02-27-my-view-toward-apache-kafka.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                                <span class="hidden">Twitter</span>
+                            </a>
+                            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/posts/2015-02-27-my-view-toward-apache-kafka.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                                <span class="hidden">Facebook</span>
+                            </a>
+                            <a class="icon-google-plus" href="https://plus.google.com/share?url=/posts/2015-02-27-my-view-toward-apache-kafka.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                                <span class="hidden">Google+</span>
+                            </a>
+                        </section>
+                    </footer>
+            </article>
         </main>
 
-        <nav class="pagination" role="navigation">
-        <nav class="main-nav clearfix">
-            
-                <div class="newer-posts">
-                    
-                </div>
-            
-            
-                <div class="older-posts">
-                    
-                </div>
-            
-        </nav>
-        <span class="page-number">Page 1 of 1</span>
-
         <footer class="site-footer">
-            <a class="subscribe icon-feed" href="./rss/feed.xml"><span class="tooltip">Subscribe!</span></a>
+            <a class="subscribe icon-feed" href="../rss/feed.xml"><span class="tooltip">Subscribe!</span></a>
             <div class="inner">
                  <section class="copyright">All content copyright <a href></a> © 2014 • All rights reserved.</section>
                  <section class="copyright">The Photo is by Tim Gage, under the license of Creative Commons 2.0 BY-SA</section>
             </div>
         </footer>
-        <script src="./javascript/jquery.js"></script>
-        <script src="./javascript/jquery.fitvids.js"></script>
-        <script src="./javascript/index.js"></script>
+        <script src="../javascript/jquery.js"></script>
+        <script src="../javascript/jquery.fitvids.js"></script>
+        <script src="../javascript/index.js"></script>
     </body>
 </html>

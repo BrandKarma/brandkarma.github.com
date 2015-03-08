@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Apache Kafka</title>
+        <title>PostGIS with SQLAlchemy</title>
 
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -28,13 +28,22 @@
                             <span class="blog-title">Brand Karma Engineering</span>
                     </a>
                 </header>
-                    <span class="post-meta"><time datetime="2015-02-21 17:30">2015-02-21 17:30</time> </span>
+                    <span class="post-meta"><time datetime="2015-01-06 15:08">2015-01-06 15:08</time> </span>
 
-                    <h1 class="post-title">Apache Kafka</h1>
+                    <h1 class="post-title">PostGIS with SQLAlchemy</h1>
 
                     <section class="post-content">
-                        <h2 id="introduction">Introduction</h2>
-<p>Apache Kafka</p>
+                        <p>Postgres is often said as the open-source world Oracle DB. It is shipped with different kind of index type. The default is B-tree, the others are R-Tree and GIST and GIN respectively. <a href="http://postgis.net/docs/manual-2.1/">PostGIS</a> is built for indexing geometry objects, and it is built on Postgres’s GIST type index. On AWS RDS you could also switch it on by following the <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.html#Appendix.PostgreSQL.CommonDBATasks.PostGIS">instructions</a></p>
+<p>To take the most of it and build fast prototypes, we still need ORM abstraction for PostGIS extension. The popular Sqlalchemy ORM in python world comes with geoalchemy extension. It provides functions from PostGIS.</p>
+<p>To use it, you have to import it into your model file</p>
+<pre><code>from geoalchemy2 import Geometry</code></pre>
+<p>And define the column with <code>Geometry</code> class</p>
+<pre><code>geom = Column(Geometry(‘POINT’), nullable=False)</code></pre>
+<p>And insert to the model by assigning it a <code>WKTElement</code> with correct srid</p>
+<pre><code>s = ‘POINT(%s %s)’ %(geocode[“latitude”], geocode[“longitude”])
+l.geom = WKTElement(s, srid=4326)</code></pre>
+<p>Then you could do the common operation using <a href="http://geoalchemy-2.readthedocs.org/en/latest/spatial_functions.html">spatial functions</a></p>
+<pre><code>from geoalchemy2 import functions</code></pre>
 
                     </section>
 
@@ -47,13 +56,13 @@
 
                         <section class="share">
                             <h4>Share this post</h4>
-                            <a class="icon-twitter" href="https://twitter.com/share?text=Apache Kafka&amp;url=/posts/2015-02-27-kafka.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <a class="icon-twitter" href="https://twitter.com/share?text=PostGIS with SQLAlchemy&amp;url=/posts/2015-01-06-postgis-with-sqlalchemy.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                                 <span class="hidden">Twitter</span>
                             </a>
-                            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/posts/2015-02-27-kafka.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/posts/2015-01-06-postgis-with-sqlalchemy.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                                 <span class="hidden">Facebook</span>
                             </a>
-                            <a class="icon-google-plus" href="https://plus.google.com/share?url=/posts/2015-02-27-kafka.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <a class="icon-google-plus" href="https://plus.google.com/share?url=/posts/2015-01-06-postgis-with-sqlalchemy.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                                 <span class="hidden">Google+</span>
                             </a>
                         </section>
