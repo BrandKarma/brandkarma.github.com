@@ -19,3 +19,4 @@ site
 .cabal-sandbox/
 cabal.sandbox.config
 haspot
+dist
